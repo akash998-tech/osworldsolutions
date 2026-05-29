@@ -3,7 +3,7 @@ const navbar = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 40);
 });
-
+ 
 // ── Mobile nav ──
 const toggle = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');
@@ -20,7 +20,7 @@ if (toggle) {
     navLinks.style.borderBottom = '1px solid #1c2035';
   });
 }
-
+ 
 // ── Reveal on scroll ──
 const reveals = document.querySelectorAll('.reveal');
 const observer = new IntersectionObserver((entries) => {
@@ -32,7 +32,7 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 reveals.forEach(r => observer.observe(r));
-
+ 
 // ── Animated counters ──
 function animateCounter(el) {
   const target = parseFloat(el.dataset.target);
@@ -59,22 +59,11 @@ const counterObserver = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.5 });
 document.querySelectorAll('.counter').forEach(c => counterObserver.observe(c));
-
+ 
 // ── Active nav link ──
 const currentPage = window.location.pathname.split('/').pop() || 'index.html';
 document.querySelectorAll('.nav-links a').forEach(a => {
   if (a.getAttribute('href') === currentPage) a.classList.add('active');
 });
-
-// ── Contact form ──
-const form = document.getElementById('contactForm');
-if (form) {
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const btn = form.querySelector('button[type=submit]');
-    btn.textContent = '✓ Message Sent!';
-    btn.style.background = 'linear-gradient(135deg,#2a7a4a,#3a9a5a)';
-    btn.disabled = true;
-    setTimeout(() => { btn.textContent = 'Send Message'; btn.style.background = ''; btn.disabled = false; }, 4000);
-  });
-}
+ 
+// ── Contact form handled by Formspree ──
